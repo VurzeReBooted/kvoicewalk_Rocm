@@ -11,16 +11,20 @@ dependencies = [
     "numpy>=2.2.6",
     "onnxruntime<1.24",
     "pip>=25.1.1",
+    "pytorch-triton-rocm>=3.5.1 ; sys_platform == 'linux'",
     "resemblyzer>=0.1.4",
     "soundfile>=0.13.1",
     "torch>=2.7.0",
     "tqdm>=4.67.1",
+    "triton-rocm>=3.6.0 ; sys_platform == 'linux'",
 ]
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu128" }
+torch = [{ index = "pytorch-rocm", marker = "sys_platform == 'linux'" }]
+pytorch-triton-rocm = [{ index = "pytorch-rocm", marker = "sys_platform == 'linux'" }]
+triton-rocm = [{ index = "pytorch-rocm", marker = "sys_platform == 'linux'" }]
 
 [[tool.uv.index]]
-name = "pytorch-cu128"
-url = "https://download.pytorch.org/whl/cu128"
+name = "pytorch-rocm"
+url = "https://download.pytorch.org/whl/rocm7.2"
 explicit = true
